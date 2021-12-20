@@ -1,13 +1,13 @@
 
 //Первое упражнение
-//let Tc = +prompt("Введите темперауру в Цельсиях");
-//let Tf = (9 / 5) * Tc + 32;
-//console.log(Tf + "° по фаренгейту");
+let Tc = +prompt("Введите темперауру в Цельсиях");
+let Tf = (9 / 5) * Tc + 32;
+console.log(Tf + "° по фаренгейту");
 
 //Второе упражнение
-//let name = "Василий";
-//let admin = name;
-//console.log(admin);
+let name = "Василий";
+let admin = name;
+console.log(admin);
 
 //Третье упражнение
 /*
