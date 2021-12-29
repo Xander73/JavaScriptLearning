@@ -1,69 +1,89 @@
+//ДЗ к 4-му уроку
 
-//Первое упражнение
-let Tc = +prompt("Введите темперауру в Цельсиях");
-let Tf = (9 / 5) * Tc + 32;
-console.log(Tf + "° по фаренгейту");
+//Упражнение 1.1
+//es5
+function Product(name, price) {
+    this.name = name;
+    this.price = price;
+}
 
-//Второе упражнение
-let name = "Василий";
-let admin = name;
-console.log(admin);
+Product.prototype.make25PercentDiscount = function () {
+    this.price *= 0.75;
+}
 
-//Третье упражнение
-/*
-1. складываем 10 и 10 получаем 20
 
-2. неявно приводим 20 к строке, т.к. складываем число и строку
+//es6
+class ProductES6 {
+    constructor(name, price) {
+        this.name = name;
+        this.price = price;
+    }
 
-3. производим конкатенацию строк 20 и 10 получаем 2010
+    make25PercentDiscount() {
+        this.price *= 0.75;
+    }
+}
 
-4. с помощью console.log выводим результат выражения в консоль
-*/
-console.log(10 + 10 + "10");
 
-/*
-1. неявно приводим 10 к строке, т.к. складываем число и строку
+//Упражнение 1.2
+//es5
+function Post(author, text, date) {
+    this.author = author;
+    this.text = text;
+    this.date = date;
+}
 
-2. производим конкатенацию строк 10 и 10 получаем 1010
+Post.prototype.edit = function (text) {
+    this.text = text;
+}
 
-3. неявно приводим третье слогаемое 10 к строке, т.к. складываем строку и число
+function AttachedPost(author, text, date) {
+    Post.call(this, author, text, date);
+    this.highlighted = false;
+}
 
-4. производим конкатенацию строк 1010 и 10 получаем 101010
+AttachedPost.prototype = Object.create(Post.prototype);
+AttachedPost.prototype.constructor = AttachedPost;
+AttachedPost.prototype.makeTextHighlighted = function () {
+    this.highlighted = true;
+}
 
-5. с помощью console.log выводим результат выражения в консоль
-*/
-console.log(10 + "10" + 10);
+let attachedPostES5 = new AttachedPost("Bob", "text", "01.01.1970");
 
-/*
-1. складываем 10 и 10 получаем 20
+attachedPostES5.makeTextHighlighted();
+console.log(attachedPostES5.highlighted);
+attachedPostES5.edit("new text");
+console.log(attachedPostES5.text);
 
-2. неявно приводим третье слогаемое 10 к числу, т.к. перед строкой указан +
 
-3. складываем 20 и 10 получаем 30
+//es6
+class PostES6 {
+    constructor(author, text, date) {
+        this.author = author;
+        this.text = text;
+        this.date = date;
+    }
 
-4. с помощью console.log выводим результат выражения в консоль
-*/
-console.log(10 + 10 + +"10");
+    edit(text) {
+        this.text = text;
+    }
+}
 
-/*
-1. неявно приводим делитель числу -0, т.к. перед строкой указан -
+class AttachedPostES6 extends PostES6 {
+    constructor(author, text, date) {
+        super(author, text, date);
+        this.highlighted = false;
+    }
 
-2. число 0 принимает значение -, т.к. перед ним указан -
+    makeTextHighlighted() {
+        this.highlighted = true;
+    }
+}
 
-3. делим 10 на -0 получаем -Infinity, т.к. делим на -0
+let attachedPostES6 = new AttachedPostES6("Alex", "text", "01.01.2000");
 
-4. с помощью console.log выводим результат выражения в консоль
-*/
-console.log(10 / -"");
+attachedPostES6.edit("new ES6 text");
+console.log(attachedPostES6.text);
 
-/*
-1. неявно приводим делитель числу 2.5, т.к. перед строкой указан +
-
-2. получаем значение NaN, т.к. дробную часть нужно отделять точкой
-
-3. делим 10 на NaN получаем NaN
-
-4. с помощью console.log выводим результат выражения в консоль
-*/
-console.log(10 / +"2,5");
-
+attachedPostES6.makeTextHighlighted();
+console.log(attachedPostES6.highlighted);
