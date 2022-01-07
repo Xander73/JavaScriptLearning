@@ -1,69 +1,122 @@
+//ДЗ к 3-му уроку
 
-//Первое упражнение
-let Tc = +prompt("Введите темперауру в Цельсиях");
-let Tf = (9 / 5) * Tc + 32;
-console.log(Tf + "° по фаренгейту");
+'use strict'
 
-//Второе упражнение
-let name = "Василий";
-let admin = name;
-console.log(admin);
+//1-е задание
+for (let i = 0; i <= 10; ++i) {
+    if (i == 0) {
+        console.log(i + " - это ноль");
+    } else if (i % 2 == 0) {
+        console.log(i + " - четное число");
+    } else if (i % 2 != 0) {
+        console.log(i + " - нечетное число");
+    }
+}
+console.log('\n');
 
-//Третье упражнение
-/*
-1. складываем 10 и 10 получаем 20
+//2-е задание
+const post = {
+    author: "John", //вывести этот текст
+    postId: 23,
+    comments: [
+        {
+            userId: 10,
+            userName: "Alex",
+            text: "lorem ipsum",
+            rating: {
+                likes: 10,
+                dislikes: 2 //вывести это число
+            }
+        },
+        {
+            userId: 5, //вывести это число
+            userName: "Jane",
+            text: "lorem ipsum 2", //вывести этот текст
+            rating: {
+                likes: 3,
+                dislikes: 1
+            }
+        },
+    ]
+};
 
-2. неявно приводим 20 к строке, т.к. складываем число и строку
+console.log(post.author);
+console.log(post.comments[0].rating.dislikes);
+console.log(post.comments[1].userId);
+console.log(post.comments[1].text);
+console.log('\n');
 
-3. производим конкатенацию строк 20 и 10 получаем 2010
+//3-е задание
+const products1 = [
+    {
+        id: 3,
+        price: 200,
+    },
+    {
+        id: 4,
+        price: 900,
+    },
+    {
+        id: 1,
+        price: 1000,
+    },
+];
 
-4. с помощью console.log выводим результат выражения в консоль
-*/
-console.log(10 + 10 + "10");
+products1.forEach(item => item.price *= 0.85)
 
-/*
-1. неявно приводим 10 к строке, т.к. складываем число и строку
+console.log("\n");
+console.log("Объекты со сниженной ценой");
+console.log(products1);
 
-2. производим конкатенацию строк 10 и 10 получаем 1010
+//4-е упражнение
+const products2 = [
+    {
+        id: 3,
+        price: 127,
+        photos: [
+            "1.jpg",
+            "2.jpg",
+        ]
+    },
+    {
+        id: 5,
+        price: 499,
+        photos: []
+    },
+    {
+        id: 10,
+        price: 26,
+        photos: [
+            "3.jpg"
+        ]
+    },
+    {
+        id: 8,
+        price: 78,
+    },
+];
 
-3. неявно приводим третье слогаемое 10 к строке, т.к. складываем строку и число
+let productsWithPhotos = products2.filter((item) => {
+    if ("photos" in item) {
+        return item.photos.length > 0;
+    }
+})
+console.log("\n");
+console.log("Объекты с фотографиями");
+console.log(productsWithPhotos);
 
-4. производим конкатенацию строк 1010 и 10 получаем 101010
+products2.sort((item1, item2) => item1.price - item2.price);
 
-5. с помощью console.log выводим результат выражения в консоль
-*/
-console.log(10 + "10" + 10);
+console.log("\n");
+console.log("Сортировка по цене (от низкой к высокой)");
+console.log(products2);
 
-/*
-1. складываем 10 и 10 получаем 20
+//6-е упражнение
+let star = "";
 
-2. неявно приводим третье слогаемое 10 к числу, т.к. перед строкой указан +
-
-3. складываем 20 и 10 получаем 30
-
-4. с помощью console.log выводим результат выражения в консоль
-*/
-console.log(10 + 10 + +"10");
-
-/*
-1. неявно приводим делитель числу -0, т.к. перед строкой указан -
-
-2. число 0 принимает значение -, т.к. перед ним указан -
-
-3. делим 10 на -0 получаем -Infinity, т.к. делим на -0
-
-4. с помощью console.log выводим результат выражения в консоль
-*/
-console.log(10 / -"");
-
-/*
-1. неявно приводим делитель числу 2.5, т.к. перед строкой указан +
-
-2. получаем значение NaN, т.к. дробную часть нужно отделять точкой
-
-3. делим 10 на NaN получаем NaN
-
-4. с помощью console.log выводим результат выражения в консоль
-*/
-console.log(10 / +"2,5");
-
+console.log("\n");
+console.log("Горка");
+for (let i = 0; i < 20; ++i) {
+    star += "*";
+    console.log(star);
+}
